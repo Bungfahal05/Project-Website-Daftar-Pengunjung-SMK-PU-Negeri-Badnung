@@ -1,6 +1,6 @@
 <?php
 session_start();
- 
+
 if (!isset($_SESSION['username'])) {
     header("Location: login");
 }
@@ -15,7 +15,7 @@ include 'templates/header.php'
                     <form method="post" action="">
                         <?php
                         include 'koneksi.php';
-                        if(isset($_POST['simpan'])) {
+                        if (isset($_POST['simpan'])) {
                             $nama           = $_POST['nama'];
                             $kelas          = $_POST['kelas'];
                             $jurusan        = $_POST['jurusan'];
@@ -24,13 +24,12 @@ include 'templates/header.php'
 
                             $sql = "INSERT INTO siswa (nama, kelas, jurusan, keperluan, tanggal) value ('$nama', '$kelas', '$jurusan', '$keperluan', '$tanggal')";
                             $query = mysqli_query($conn, $sql);
-                            if($query) {
+                            if ($query) {
                                 echo '<div class="alert alert-success" role="alert">
                                 Data Berhasil Ditambahkan
                               </div>
                               ';
-                            }
-                            else {
+                            } else {
                                 echo '<div class="alert alert-danger" role="alert">
                                 Data Gagal Ditambahkan
                               </div>
@@ -38,6 +37,10 @@ include 'templates/header.php'
                             }
                         };
                         ?>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Tanggal</label>
+                            <input type="date" name="tanggal" class="form-control" id="exampleFormControlInput1">
+                        </div>
                         <div class="mb-3">
                             <label for="validationCustom01" class="form-label">Nama Siswa</label>
                             <input type="text" name="nama" class="form-control" id="validationCustom01" placeholder="Nama Siswa" required>
@@ -71,10 +74,6 @@ include 'templates/header.php'
                                 <option value="Meminjam Buku">Meminjam Buku</option>
                                 <option value="Mengerjakan Tugas" name>Mengerjakan Tugas</option>
                             </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Tanggal</label>
-                            <input type="date" name="tanggal" class="form-control" id="exampleFormControlInput1">
                         </div>
                         <button name="simpan" id="simpan" class="btn btn-success">Tambah</button>
                 </div>
